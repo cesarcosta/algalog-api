@@ -6,6 +6,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -27,12 +30,19 @@ public class Cliente {
 	@SequenceGenerator(name = "seqCliente", sequenceName = "public.seq_cliente", allocationSize = 1)
 	private Long id;
 
+	@NotBlank
+	@Size(max = 100)
 	@Column
 	private String nome;
 
+	@NotBlank
+	@Email
+	@Size(max = 100)
 	@Column
 	private String email;
 
+	@NotBlank
+	@Size(max = 15)
 	@Column
 	private String telefone;
 

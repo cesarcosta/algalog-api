@@ -2,6 +2,8 @@ package com.algaworks.algalog.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -32,7 +34,7 @@ public class ClienteController {
 
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public Cliente salvar(@RequestBody Cliente cliente) {
+	public Cliente salvar(@Valid @RequestBody Cliente cliente) {
 		return clienteRepository.save(cliente);
 	}
 
@@ -48,7 +50,7 @@ public class ClienteController {
 	}
 
 	@PutMapping("/{clienteId}")
-	public ResponseEntity<Cliente> alterar(@PathVariable Long clienteId, @RequestBody Cliente cliente) {
+	public ResponseEntity<Cliente> alterar(@PathVariable Long clienteId, @Valid @RequestBody Cliente cliente) {
 		var clienteEncontrado = clienteRepository.existsById(clienteId);
 
 		if (!clienteEncontrado) {
