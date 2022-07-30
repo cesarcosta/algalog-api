@@ -1,9 +1,9 @@
-package com.algaworks.algalog.domain.repository;
+package com.algaworks.algalog.api.domain.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.algaworks.algalog.domain.model.Cliente;
+import com.algaworks.algalog.api.domain.model.Cliente;
 
 /**
  * @author César Rangel - cesarrangelfonseca@gmail.com
