@@ -1,4 +1,4 @@
-package com.algaworks.algalog.api.domain.exception;
+package com.algaworks.algalog.domain.exception;
 
 /**
  * @author César Rangel - cesarrangelfonseca@gmail.com

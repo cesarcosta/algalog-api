@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import com.algaworks.algalog.api.domain.exception.NegocioException;
+import com.algaworks.algalog.domain.exception.NegocioException;
 
 import lombok.AllArgsConstructor;
 
