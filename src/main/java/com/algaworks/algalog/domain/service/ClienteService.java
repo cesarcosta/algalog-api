@@ -40,8 +40,13 @@ public class ClienteService {
 		clienteRepository.deleteById(id);
 	}
 	
-	public Optional<Cliente> buscarPorId(Long id) {
+	public Optional<Cliente> findById(Long id) {
 		return clienteRepository.findById(id);
+	}
+	
+	public Cliente buscarPorId(Long id) {
+		return clienteRepository.findById(id)
+				.orElseThrow(() -> new NegocioException("Cliente não encontrado!"));
 	}
 	
 	public List<Cliente> buscarTodos() {
