@@ -1,7 +1,7 @@
 package com.algaworks.algalog.domain.model;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
@@ -62,8 +62,8 @@ public class Entrega {
 	private StatusEntrega status;
 	
 	@Column
-	private LocalDateTime dataPedido;
+	private OffsetDateTime dataPedido;
 	
 	@Column
-	private LocalDateTime dataFinalizacao;
+	private OffsetDateTime dataFinalizacao;
 }
