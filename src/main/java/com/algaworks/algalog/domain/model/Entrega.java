@@ -8,13 +8,18 @@ import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+import javax.validation.groups.ConvertGroup;
+import javax.validation.groups.Default;
+
+import com.algaworks.algalog.domain.validations.ValidationGroups;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -36,13 +41,19 @@ public class Entrega {
 	@SequenceGenerator(name = "seqEntrega", sequenceName = "public.seq_entrega", allocationSize = 1)
 	private Long id;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@Valid
+	@NotNull
+	@ConvertGroup(from = Default.class, to = ValidationGroups.ClienteId.class)
+	@ManyToOne
 	@JoinColumn(name = "id_cliente")
 	private Cliente cliente;
 	
+	@NotNull
+	@Valid
 	@Embedded
 	private Destinatario destinatario;
 	
+	@NotNull
 	@Column
 	private BigDecimal taxa;
 	
