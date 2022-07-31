@@ -3,6 +3,9 @@ package com.algaworks.algalog.api.exceptionhandler;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
@@ -12,6 +15,7 @@ import lombok.Getter;
  * @since 30/07/2022
  */
 @Data
+@JsonInclude(Include.NON_NULL)
 public class ErrorHandler {
 
 	private Integer status;

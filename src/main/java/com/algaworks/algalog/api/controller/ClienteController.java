@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.algaworks.algalog.api.domain.model.Cliente;
-import com.algaworks.algalog.api.domain.repository.ClienteRepository;
+import com.algaworks.algalog.api.domain.service.ClienteService;
 
 import lombok.AllArgsConstructor;
 
@@ -30,48 +30,48 @@ import lombok.AllArgsConstructor;
 @RequestMapping("/clientes")
 public class ClienteController {
 
-	private ClienteRepository clienteRepository;
+	private ClienteService clienteService;
 
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public Cliente salvar(@Valid @RequestBody Cliente cliente) {
-		return clienteRepository.save(cliente);
+		return clienteService.salvar(cliente);
 	}
 
 	@GetMapping
 	public List<Cliente> listar() {
-		return clienteRepository.findAll();
+		return clienteService.buscarTodos();
 	}
 
 	@GetMapping("/{clienteId}")
 	public ResponseEntity<Cliente> buscarPorId(@PathVariable Long clienteId) {
-		return clienteRepository.findById(clienteId).map(cliente -> ResponseEntity.ok(cliente))
+		return clienteService.buscarPorId(clienteId).map(cliente -> ResponseEntity.ok(cliente))
 				.orElse(ResponseEntity.notFound().build());
 	}
 
 	@PutMapping("/{clienteId}")
 	public ResponseEntity<Cliente> alterar(@PathVariable Long clienteId, @Valid @RequestBody Cliente cliente) {
-		var clienteEncontrado = clienteRepository.existsById(clienteId);
+		var clienteEncontrado = clienteService.existsById(clienteId);
 
 		if (!clienteEncontrado) {
 			return ResponseEntity.notFound().build();
 		}
 
 		cliente.setId(clienteId);
-		cliente = clienteRepository.save(cliente);
+		cliente = clienteService.salvar(cliente);
 
 		return ResponseEntity.ok(cliente);
 	}
 	
 	@DeleteMapping("/{clienteId}")
 	public ResponseEntity<Void> excluir(@PathVariable Long clienteId) {
-		var clienteEncontrado = clienteRepository.existsById(clienteId);
+		var clienteEncontrado = clienteService.existsById(clienteId);
 
 		if (!clienteEncontrado) {
 			return ResponseEntity.notFound().build();
 		}
 		
-		clienteRepository.deleteById(clienteId);
+		clienteService.excluir(clienteId);
 		
 		return ResponseEntity.noContent().build();
 	}
