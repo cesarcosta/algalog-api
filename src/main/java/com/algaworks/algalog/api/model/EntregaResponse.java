@@ -18,7 +18,7 @@ public class EntregaResponse {
 
 	private Long id;
 	
-	private String nomeCliente;
+	private ClienteResumoResponse cliente;
 	
 	private DestinatarioResponse destinatario;
 
